@@ -1,45 +1,44 @@
 import React from 'react';
 import cityData from './eventCards.json';
-import { View, Text, StyleSheet, FlatList } from 'react-native';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
 
 export default function EventCard(props) {
   const { city } = props;
   const cityMatch = cityData[city] ? cityData[city] : [];
-  const cards = card => {
-    return <View key={card.index} style={styles.container}>
-      <Text>{card.item.who}</Text>
-      <Text>{card.item.what}</Text>
-      <Text>{card.item.when}</Text>
-      <Text>{card.item.where}</Text>
-      {/* <Text style={{ color: 'blue' }}
-                  onPress={() => LinkingIOS.openURL(card.link)}>
-                  {card.link}
-                </Text> */}
+
+  const renderCards = cityMatch.forEach(card => {
+    <View style={styles.item}>
+      <Text>{card.who}</Text>
+      <Text>{card.what}</Text>
+      <Text>{card.when}</Text>
+      <Text>{card.where}</Text>
     </View>
-  };
-  const renderCards = (!cityMatch.length)
-    ? <View style={styles.container}><Text>There are no events listed for this city. Check back later for updates!</Text></View>
-    : <FlatList
-      data={cityMatch}
-      keyExtractor={(item, index) => item.who}
-      renderItem={cards}
-    />
+  });
+
+  const noEvents = <View style={styles.item}><Text>There are no events listed for this city. Check back later for updates!</Text></View>;
+  console.log('cityMatch', cityMatch);
+
+  console.log('rend', renderCards);
 
   return (
-    <View style={{ top: 200 }}>
+    <ScrollView style={styles.container}>
       {renderCards}
-    </View>
+    </ScrollView>
   );
 
 }
 
 
 const styles = StyleSheet.create({
-  container: {
+  item: {
     borderRadius: 4,
     borderWidth: 0.5,
     borderColor: '#d6d7da',
     marginBottom: 10,
     padding: 10
   },
+  container: {
+    top: 200,
+    height: 1000,
+  }
 });
