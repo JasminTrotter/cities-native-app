@@ -11,7 +11,7 @@ export default function FilterByCity() {
     }
 
     return (
-        <View>
+        <View style={{ height: 1000 }}>
             <FilterForm onCityChange={updateCity} city={selectedCity} />
             <EventCard city={selectedCity} />
         </View>
