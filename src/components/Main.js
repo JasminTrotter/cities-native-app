@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import EventCard from './EventCard';
-import FilterForm from './FilterForm';
+import EventCard from './FilterByCity/EventCard';
+import FilterForm from './FilterByCity/FilterForm';
 import { View } from 'react-native';
 
 export default function Main(props) {
@@ -20,7 +20,9 @@ export default function Main(props) {
         );
     } else {
         return (
-            <View></View>
+            <View>
+                
+            </View>
         );
     }
 
